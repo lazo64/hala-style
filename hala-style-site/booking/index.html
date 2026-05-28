@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Réservation – Hala Style Coiffure</title>
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════
+   RESET & BASE
+═══════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body {
+  font-family: 'Inter', sans-serif;
+  color: #2d2d2d;
+  background: #fff;
+  overflow-x: hidden;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { text-decoration: none; color: inherit; }
+
+/* ═══════════════════════════════
+   VARIABLES
+═══════════════════════════════ */
+:root {
+  --rose:   #d57a88;
+  --rose-l: #f8dfe3;
+  --dark:   #2d2d2d;
+  --grey:   #666;
+  --max:    1100px;
+}
+
+/* ═══════════════════════════════
+   HEADER
+═══════════════════════════════ */
+.site-header {
+  background: linear-gradient(135deg, rgb(249,246,242) 0%, rgb(168,144,111) 10%, rgb(255,244,233) 38%, rgb(255,244,233) 51%, rgb(168,144,111) 90%, rgb(249,246,242) 100%);
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.header-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 60px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 120px;
+}
+.header-logo { margin-left: -20px; }
+.header-logo img { width: 200px; height: auto; }
+.header-nav { display: flex; align-items: center; gap: 32px; }
+.header-nav a {
+  font-size: 15px;
+  color: #3d3d3d;
+  font-weight: 500;
+  transition: color .2s;
+}
+.header-nav a:hover,
+.header-nav a.active { color: var(--rose); }
+.header-social { display: flex; align-items: center; gap: 16px; }
+.header-social a { color: #3d3d3d; transition: color .2s; }
+.header-social a:hover { color: var(--rose); }
+.header-social svg { width: 20px; height: 20px; fill: currentColor; }
+.header-phone { display:flex; align-items:center; gap:7px; background:var(--rose); color:#fff; padding:8px 18px; border-radius:50px; font-size:14px; font-weight:600; transition:background .2s; white-space:nowrap; }
+.header-phone:hover { background:#c4697a; color:#fff; }
+.header-phone svg { width:15px; height:15px; fill:#fff; flex-shrink:0; }
+
+/* Photo header */
+.header-photo {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: auto;
+  display: block;
+  mix-blend-mode: luminosity;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 30%);
+  mask-image: linear-gradient(to right, transparent 0%, black 30%);
+  pointer-events: none;
+}
+
+/* Burger mobile */
+.burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
+.burger span { display: block; width: 24px; height: 2px; background: #3d3d3d; border-radius: 2px; }
+.mobile-menu { display:none; flex-direction:column; position:fixed; top:0;left:0;right:0;bottom:0; background:linear-gradient(135deg,rgb(249,246,242) 0%,rgb(168,144,111) 10%,rgb(255,244,233) 38%,rgb(255,244,233) 51%,rgb(168,144,111) 90%,rgb(249,246,242) 100%); z-index:200; align-items:center; justify-content:center; gap:8px; padding:40px 24px; }
+.mobile-menu a { font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:600; color:#3d3d3d; padding:14px 0; text-align:center; width:100%; border-bottom:1px solid rgba(168,144,111,0.25); transition:color .2s; }
+.mobile-menu a:last-child { border-bottom:none; }
+.mobile-menu.open { display:flex; }
+.mobile-menu-close { position:absolute; top:20px; right:20px; font-size:32px; color:#3d3d3d; cursor:pointer; line-height:1; padding:8px; }
+
+/* ═══════════════════════════════
+   MAP BOX
+═══════════════════════════════ */
+.map-box {
+  max-width: 850px;
+  margin: 40px auto;
+  text-align: center;
+  padding: 30px;
+  background-color: #FFF9FA;
+  border-radius: 24px;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.05);
+}
+.map-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+.map-address h3 {
+  margin: 0;
+  font-size: 1.4em;
+  font-family: 'Playfair Display', serif;
+  color: #D57A88;
+}
+.map-address p {
+  margin: 5px 0;
+  font-family: 'Poppins', sans-serif;
+  color: #3A3A3A;
+  font-size: 16px;
+}
+.map-button {
+  background-color: #D57A88;
+  color: #FFFFFF;
+  padding: 14px 28px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+.map-button:hover { background-color: #C96178; }
+.map-box h2 {
+  color: #D57A88;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  font-family: 'Playfair Display', serif;
+}
+.map-box .cta-text {
+  color: #3A3A3A;
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  font-family: 'Poppins', sans-serif;
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.map-box .cta-text strong { color: #E8AEB7; }
+.map-box .phone {
+  color: #3A3A3A;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  margin-top: 10px;
+}
+.map-box .phone a {
+  color: #D57A88;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* ═══════════════════════════════
+   FOOTER
+═══════════════════════════════ */
+.footer {
+  background: linear-gradient(135deg, rgb(249,246,242) 0%, rgb(168,144,111) 10%, rgb(255,244,233) 38%, rgb(255,244,233) 51%, rgb(168,144,111) 90%, rgb(249,246,242) 100%);
+  padding: 36px clamp(16px,5vw,60px) 24px;
+}
+.footer-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  margin-bottom: 16px;
+}
+.footer-col-title { font-size: 13px; font-weight: 700; color: #3d3d3d; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links a { font-size: 14px; color: #555; transition: color .2s; }
+.footer-links a:hover { color: var(--rose); }
+.footer-social { display: flex; gap: 14px; margin-top: 2px; }
+.footer-social a { color: #555; transition: color .2s; }
+.footer-social a:hover { color: var(--rose); }
+.footer-social svg { width: 20px; height: 20px; fill: currentColor; display: block; }
+.footer-copy { text-align: center; font-size: 12px; color: #888; max-width: var(--max); margin: 0 auto; }
+
+
+/* ═══════════════════════════════
+   MOBILE
+═══════════════════════════════ */
+@media (max-width: 768px) {
+  .header-nav, .header-social { display: none; }
+  .burger { display: flex; }
+  .header-nav, .header-social, .header-phone { display: none; }
+  .burger { display: flex; z-index: 10; position: relative; }
+  .burger span { background: #3d3d3d; }
+  .header-inner { min-height: 70px; }
+  .header-logo img { width: 150px; }
+  .footer-inner { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="header-logo">
+      <img src="/wp-content/uploads/2025/07/image-11-edited.png" alt="Hala Style Coiffure">
+    </a>
+    <nav class="header-nav">
+      <a href="/">Accueil</a>
+      <a href="/services/">Services</a>
+      <a href="/booking/" class="active">Réservation</a>
+    </nav>
+    <div class="header-social">
+      <a href="https://www.instagram.com/coiffure_hala_style_/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12,4.622c2.403,0,2.688,0.009,3.637,0.052c0.877,0.04,1.354,0.187,1.671,0.31c0.42,0.163,0.72,0.358,1.035,0.673c0.315,0.315,0.51,0.615,0.673,1.035c0.123,0.317,0.27,0.794,0.31,1.671c0.043,0.949,0.052,1.234,0.052,3.637s-0.009,2.688-0.052,3.637c-0.04,0.877-0.187,1.354-0.31,1.671c-0.163,0.42-0.358,0.72-0.673,1.035c-0.315,0.315-0.615,0.51-1.035,0.673c-0.317,0.123-0.794,0.27-1.671,0.31c-0.949,0.043-1.233,0.052-3.637,0.052s-2.688-0.009-3.637-0.052c-0.877-0.04-1.354-0.187-1.671-0.31c-0.42-0.163-0.72-0.358-1.035-0.673c-0.315-0.315-0.51-0.615-0.673-1.035c-0.123-0.317-0.27-0.794-0.31-1.671C4.631,14.688,4.622,14.403,4.622,12s0.009-2.688,0.052-3.637c0.04-0.877,0.187-1.354,0.31-1.671c0.163-0.42,0.358-0.72,0.673-1.035c0.315-0.315,0.615-0.51,1.035-0.673c0.317-0.123,0.794-0.27,1.671-0.31C9.312,4.631,9.597,4.622,12,4.622 M12,3C9.556,3,9.249,3.01,8.289,3.054C7.331,3.098,6.677,3.25,6.105,3.472C5.513,3.702,5.011,4.01,4.511,4.511c-0.5,0.5-0.808,1.002-1.038,1.594C3.25,6.677,3.098,7.331,3.054,8.289C3.01,9.249,3,9.556,3,12c0,2.444,0.01,2.751,0.054,3.711c0.044,0.958,0.196,1.612,0.418,2.185c0.23,0.592,0.538,1.094,1.038,1.594c0.5,0.5,1.002,0.808,1.594,1.038c0.572,0.222,1.227,0.375,2.185,0.418C9.249,20.99,9.556,21,12,21s2.751-0.01,3.711-0.054c0.958-0.044,1.612-0.196,2.185-0.418c0.592-0.23,1.094-0.538,1.594-1.038c0.5-0.5,0.808-1.002,1.038-1.594c0.222-0.572,0.375-1.227,0.418-2.185C20.99,14.751,21,14.444,21,12s-0.01-2.751-0.054-3.711c-0.044-0.958-0.196-1.612-0.418-2.185c-0.23-0.592-0.538-1.094-1.038-1.594c-0.5-0.5-1.002-0.808-1.594-1.038c-0.572-0.222-1.227-0.375-2.185-0.418C14.751,3.01,14.444,3,12,3L12,3z M12,7.378c-2.552,0-4.622,2.069-4.622,4.622S9.448,16.622,12,16.622s4.622-2.069,4.622-4.622S14.552,7.378,12,7.378z M12,15c-1.657,0-3-1.343-3-3s1.343-3,3-3s3,1.343,3,3S13.657,15,12,15z M16.804,6.116c-0.596,0-1.08,0.484-1.08,1.08s0.484,1.08,1.08,1.08c0.596,0,1.08-0.484,1.08-1.08S17.401,6.116,16.804,6.116z"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@halamoustapha1" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 32 32"><path d="M16.708 0.027c1.745-0.027 3.48-0.011 5.213-0.027 0.105 2.041 0.839 4.12 2.333 5.563 1.491 1.479 3.6 2.156 5.652 2.385v5.369c-1.923-0.063-3.855-0.463-5.6-1.291-0.76-0.344-1.468-0.787-2.161-1.24-0.009 3.896 0.016 7.787-0.025 11.667-0.104 1.864-0.719 3.719-1.803 5.255-1.744 2.557-4.771 4.224-7.88 4.276-1.907 0.109-3.812-0.411-5.437-1.369-2.693-1.588-4.588-4.495-4.864-7.615-0.032-0.667-0.043-1.333-0.016-1.984 0.24-2.537 1.495-4.964 3.443-6.615 2.208-1.923 5.301-2.839 8.197-2.297 0.027 1.975-0.052 3.948-0.052 5.923-1.323-0.428-2.869-0.308-4.025 0.495-0.844 0.547-1.485 1.385-1.819 2.333-0.276 0.676-0.197 1.427-0.181 2.145 0.317 2.188 2.421 4.027 4.667 3.828 1.489-0.016 2.916-0.88 3.692-2.145 0.251-0.443 0.532-0.896 0.547-1.417 0.131-2.385 0.079-4.76 0.095-7.145 0.011-5.375-0.016-10.735 0.025-16.093z"/></svg>
+      </a>
+      <a href="https://web.facebook.com/chezhalastylecoiffure/" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12c0 5 3.7 9.1 8.4 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7C18.3 21.1 22 17 22 12c0-5.5-4.5-10-10-10z"/></svg>
+      </a>
+    </div>
+    <a href="tel:+15142788555" class="header-phone">
+      <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+      (514) 278-8555
+    </a>
+    <div class="burger" onclick="this.closest('header').querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+  <nav class="mobile-menu">
+    <span class="mobile-menu-close" onclick="this.closest('.mobile-menu').classList.remove('open')">&times;</span>
+    <a href="/">Accueil</a>
+    <a href="/services/">Services</a>
+    <a href="/booking/">Réservation</a>
+  </nav>
+  <img src="/wp-content/uploads/2026/04/5120729919380983028.jpg" class="header-photo" alt="">
+</header>
+
+<!-- ═══ CONTENU ═══ -->
+<div class="map-box">
+
+  <h2>✨ Réservez votre moment de beauté chez Hala Style</h2>
+
+  <p class="cta-text">
+    Pour vous offrir une expérience personnalisée et sans attente,
+    <strong>notre salon fonctionne exclusivement sur rendez-vous</strong>.
+    <br><br>
+    Cliquez sur le bouton <strong>« Prendre rendez-vous »</strong> pour nous appeler directement, ou venez nous visiter à notre adresse.
+  </p>
+
+  <div style="margin-bottom: 30px;">
+    <a href="tel:+15142788555" class="map-button">📞 Prendre rendez-vous</a>
+  </div>
+
+  <div style="margin-bottom: 20px;">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2792.2800010214405!2d-73.6470365!3d45.584915699999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc91f4270aef92d%3A0x984d121dc0f7a516!2sHala%20Style%20Coiffure!5e0!3m2!1sen!2sdz!4v1751539616299!5m2!1sen!2sdz"
+      width="100%"
+      height="350"
+      style="border:0; border-radius: 16px;"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+
+  <div class="map-address">
+    <h3>Montréal</h3>
+    <p>3361 Rue Monselet, Montréal-Nord, QC</p>
+    <p class="phone">📞 <a href="tel:+15142788555">+1 514-278-8555</a></p>
+  </div>
+
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-col-title">Navigation</div>
+      <div class="footer-links">
+        <a href="/">Accueil</a>
+        <a href="/services/">Services</a>
+        <a href="/booking/">Réservation</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Nous suivre</div>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/coiffure_hala_style_/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12,4.622c2.403,0,2.688,0.009,3.637,0.052c0.877,0.04,1.354,0.187,1.671,0.31c0.42,0.163,0.72,0.358,1.035,0.673c0.315,0.315,0.51,0.615,0.673,1.035c0.123,0.317,0.27,0.794,0.31,1.671c0.043,0.949,0.052,1.234,0.052,3.637s-0.009,2.688-0.052,3.637c-0.04,0.877-0.187,1.354-0.31,1.671c-0.163,0.42-0.358,0.72-0.673,1.035c-0.315,0.315-0.615,0.51-1.035,0.673c-0.317,0.123-0.794,0.27-1.671,0.31c-0.949,0.043-1.233,0.052-3.637,0.052s-2.688-0.009-3.637-0.052c-0.877-0.04-1.354-0.187-1.671-0.31c-0.42-0.163-0.72-0.358-1.035-0.673c-0.315-0.315-0.51-0.615-0.673-1.035c-0.123-0.317-0.27-0.794-0.31-1.671C4.631,14.688,4.622,14.403,4.622,12s0.009-2.688,0.052-3.637c0.04-0.877,0.187-1.354,0.31-1.671c0.163-0.42,0.358-0.72,0.673-1.035c0.315-0.315,0.615-0.51,1.035-0.673c0.317-0.123,0.794-0.27,1.671-0.31C9.312,4.631,9.597,4.622,12,4.622 M12,3C9.556,3,9.249,3.01,8.289,3.054C7.331,3.098,6.677,3.25,6.105,3.472C5.513,3.702,5.011,4.01,4.511,4.511c-0.5,0.5-0.808,1.002-1.038,1.594C3.25,6.677,3.098,7.331,3.054,8.289C3.01,9.249,3,9.556,3,12c0,2.444,0.01,2.751,0.054,3.711c0.044,0.958,0.196,1.612,0.418,2.185c0.23,0.592,0.538,1.094,1.038,1.594c0.5,0.5,1.002,0.808,1.594,1.038c0.572,0.222,1.227,0.375,2.185,0.418C9.249,20.99,9.556,21,12,21s2.751-0.01,3.711-0.054c0.958-0.044,1.612-0.196,2.185-0.418c0.592-0.23,1.094-0.538,1.594-1.038c0.5-0.5,0.808-1.002,1.038-1.594c0.222-0.572,0.375-1.227,0.418-2.185C20.99,14.751,21,14.444,21,12s-0.01-2.751-0.054-3.711c-0.044-0.958-0.196-1.612-0.418-2.185c-0.23-0.592-0.538-1.094-1.038-1.594c-0.5-0.5-1.002-0.808-1.594-1.038c-0.572-0.222-1.227-0.375-2.185-0.418C14.751,3.01,14.444,3,12,3L12,3z M12,7.378c-2.552,0-4.622,2.069-4.622,4.622S9.448,16.622,12,16.622s4.622-2.069,4.622-4.622S14.552,7.378,12,7.378z M12,15c-1.657,0-3-1.343-3-3s1.343-3,3-3s3,1.343,3,3S13.657,15,12,15z M16.804,6.116c-0.596,0-1.08,0.484-1.08,1.08s0.484,1.08,1.08,1.08c0.596,0,1.08-0.484,1.08-1.08S17.401,6.116,16.804,6.116z"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@halamoustapha1" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg viewBox="0 0 32 32"><path d="M16.708 0.027c1.745-0.027 3.48-0.011 5.213-0.027 0.105 2.041 0.839 4.12 2.333 5.563 1.491 1.479 3.6 2.156 5.652 2.385v5.369c-1.923-0.063-3.855-0.463-5.6-1.291-0.76-0.344-1.468-0.787-2.161-1.24-0.009 3.896 0.016 7.787-0.025 11.667-0.104 1.864-0.719 3.719-1.803 5.255-1.744 2.557-4.771 4.224-7.88 4.276-1.907 0.109-3.812-0.411-5.437-1.369-2.693-1.588-4.588-4.495-4.864-7.615-0.032-0.667-0.043-1.333-0.016-1.984 0.24-2.537 1.495-4.964 3.443-6.615 2.208-1.923 5.301-2.839 8.197-2.297 0.027 1.975-0.052 3.948-0.052 5.923-1.323-0.428-2.869-0.308-4.025 0.495-0.844 0.547-1.485 1.385-1.819 2.333-0.276 0.676-0.197 1.427-0.181 2.145 0.317 2.188 2.421 4.027 4.667 3.828 1.489-0.016 2.916-0.88 3.692-2.145 0.251-0.443 0.532-0.896 0.547-1.417 0.131-2.385 0.079-4.76 0.095-7.145 0.011-5.375-0.016-10.735 0.025-16.093z"/></svg>
+        </a>
+        <a href="https://web.facebook.com/chezhalastylecoiffure/" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12c0 5 3.7 9.1 8.4 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7C18.3 21.1 22 17 22 12c0-5.5-4.5-10-10-10z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <div style="font-size:14px;color:#555;line-height:1.9;">
+        3361 Rue Monselet<br>Montréal-Nord, QC<br>
+        <a href="tel:+15142788555" style="color:#3d3d3d; font-weight:700; font-size:15px;">📞 +1 514-278-8555</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copy">© 2026 Hala Style Coiffure — Tous droits réservés</div>
+</footer>
+
+
+</body>
+</html>
