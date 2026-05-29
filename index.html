@@ -1,15 +1,1075 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hala Style Coiffure</title>
-  <style>
-    html,body{margin:0;height:100%;background:#fff}
-    iframe{border:0;width:100%;height:100%}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hala Style Coiffure – Montréal-Nord</title>
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════
+   RESET & BASE
+═══════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  color: #2d2d2d;
+  background: #fff;
+  overflow-x: hidden;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { text-decoration: none; color: inherit; }
+
+/* ═══════════════════════════════
+   VARIABLES
+═══════════════════════════════ */
+:root {
+  --rose:    #d57a88;
+  --rose-l:  #f8dfe3;
+  --or:      linear-gradient(135deg, rgb(249,246,242) 0%, rgb(168,144,111) 10%, rgb(255,244,233) 38%, rgb(255,244,233) 51%, rgb(168,144,111) 90%, rgb(249,246,242) 100%);
+  --dark:    #2d2d2d;
+  --grey:    #666;
+  --max:     1100px;
+  --pad:     0 clamp(16px, 5vw, 80px);
+}
+
+/* ═══════════════════════════════
+   HEADER
+═══════════════════════════════ */
+.site-header {
+  background: linear-gradient(135deg, rgb(249,246,242) 0%, rgb(168,144,111) 10%, rgb(255,244,233) 38%, rgb(255,244,233) 51%, rgb(168,144,111) 90%, rgb(249,246,242) 100%);
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.header-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 60px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 120px;
+}
+.header-logo { margin-left: -20px; }
+.header-logo img { width: 200px; height: auto; }
+.header-nav { display: flex; align-items: center; gap: 32px; }
+.header-nav a {
+  font-size: 15px;
+  color: #3d3d3d;
+  font-weight: 500;
+  transition: color .2s;
+}
+.header-nav a:hover { color: var(--rose); }
+.header-social { display: flex; align-items: center; gap: 16px; }
+.header-social a { color: #3d3d3d; transition: color .2s; }
+.header-social a:hover { color: var(--rose); }
+.header-social svg { width: 20px; height: 20px; fill: currentColor; }
+.header-phone {
+  display: flex; align-items: center; gap: 7px;
+  background: var(--rose); color: #fff;
+  padding: 8px 18px; border-radius: 50px;
+  font-size: 14px; font-weight: 600;
+  transition: background .2s; white-space: nowrap;
+}
+.header-phone:hover { background: #c4697a; color: #fff; }
+.header-phone svg { width: 15px; height: 15px; fill: #fff; flex-shrink: 0; }
+
+/* Photo header */
+.header-photo {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: auto;
+  display: block;
+  mix-blend-mode: luminosity;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 30%);
+  mask-image: linear-gradient(to right, transparent 0%, black 30%);
+  pointer-events: none;
+}
+
+/* Burger mobile */
+.burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
+.burger span { display: block; width: 24px; height: 2px; background: #3d3d3d; border-radius: 2px; transition: all .3s; }
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg, rgb(249,246,242) 0%, rgb(168,144,111) 10%, rgb(255,244,233) 38%, rgb(255,244,233) 51%, rgb(168,144,111) 90%, rgb(249,246,242) 100%);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 40px 24px;
+}
+.mobile-menu a {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: #3d3d3d;
+  padding: 14px 0;
+  text-align: center;
+  width: 100%;
+  border-bottom: 1px solid rgba(168,144,111,0.25);
+  transition: color .2s;
+}
+.mobile-menu a:last-child { border-bottom: none; }
+.mobile-menu a:hover { color: var(--rose); }
+.mobile-menu.open { display: flex; }
+.mobile-menu-close {
+  position: absolute;
+  top: 20px; right: 20px;
+  font-size: 32px;
+  color: #3d3d3d;
+  cursor: pointer;
+  line-height: 1;
+  padding: 8px;
+}
+
+/* ═══════════════════════════════
+   HERO
+═══════════════════════════════ */
+.hero {
+  background: linear-gradient(135deg, rgb(249,246,242) 0%, rgb(168,144,111) 10%, rgb(255,244,233) 38%, rgb(255,244,233) 51%, rgb(168,144,111) 90%, rgb(249,246,242) 100%);
+  padding: 60px clamp(16px,5vw,80px);
+  position: relative;
+}
+.hero-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 48px;
+  position: relative;
+  z-index: 1;
+}
+.hero-content { max-width: 560px; }
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(34px, 5vw, 62px);
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 8px;
+  line-height: 1.1;
+}
+.hero h1 em {
+  font-family: 'Allura', cursive;
+  font-style: normal;
+  color: #000;
+  font-size: 1.25em;
+  display: block;
+  line-height: 1.2;
+}
+.hero p {
+  font-size: clamp(14px, 1.8vw, 17px);
+  color: #000;
+  margin-top: 16px;
+  margin-bottom: 36px;
+  line-height: 1.75;
+}
+.voilees-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.45);
+  border: 1px solid rgba(168,144,111,0.4);
+  color: #3d3d3d;
+  padding: 7px 16px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 18px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.hero-portrait img {
+  width: clamp(200px, 24vw, 300px);
+  height: auto;
+  border-radius: 28px;
+  border: 8px solid #fbd3dc;
+  box-shadow: 0 20px 56px rgba(168,144,111,0.3);
+  display: block;
+}
+@media (max-width: 680px) {
+  .hero { padding: 32px 16px 40px; }
+  .hero-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 20px;
+  }
+  .hero-portrait { order: -1; display: flex; justify-content: center; }
+  .hero-portrait img {
+    width: 130px;
+    height: 160px;
+    object-fit: cover;
+    border-width: 5px;
+    border-radius: 20px;
+  }
+  .voilees-badge { font-size: 12px; padding: 5px 12px; margin-bottom: 10px; }
+  .hero h1 { font-size: clamp(26px, 7vw, 36px); margin-bottom: 6px; }
+  .hero p { font-size: 14px; margin-top: 10px; margin-bottom: 22px; }
+  .hero .btn { padding: 12px 28px; font-size: 14px; }
+}
+.btn {
+  display: inline-block;
+  background: var(--rose);
+  color: #fff;
+  padding: 14px 36px;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: background .2s, transform .2s;
+}
+.btn:hover { background: #c4697a; transform: translateY(-2px); }
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--rose);
+  color: var(--rose);
+}
+.btn-outline:hover { background: var(--rose); color: #fff; }
+
+/* ═══════════════════════════════
+   AVIS
+═══════════════════════════════ */
+.avis-band {
+  background: #fff;
+  padding: 64px clamp(16px,5vw,60px);
+  text-align: center;
+}
+.avis-card {
+  max-width: 820px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.07);
+  border-radius: 18px;
+  padding: 32px 28px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.06);
+}
+.avis-card h2 { font-size: 24px; font-weight: 600; margin-bottom: 10px; }
+.avis-card p { font-size: 15px; color: var(--grey); line-height: 1.6; margin-bottom: 20px; }
+.avis-card .btn { font-size: 14px; padding: 11px 24px; }
+
+/* Photo */
+.photo-salon {
+  display: flex;
+  justify-content: center;
+  padding: 8px 0 40px;
+}
+.photo-salon img {
+  width: 230px;
+  border-radius: 24px;
+  border: 8px solid #fbd3dc;
+  box-shadow: 0 10px 28px rgba(213,122,136,0.2);
+  transition: transform .3s;
+}
+.photo-salon img:hover { transform: translateY(-6px); }
+
+/* ── Avis custom ── */
+.avis-header {
+  text-align: center;
+  padding: 64px clamp(16px,5vw,60px) 0;
+}
+.avis-header h2 { font-family:'Cormorant Garamond',serif; font-size: clamp(28px,4vw,42px); font-weight:600; color:var(--dark); margin-bottom:8px; }
+.avis-header .stars-global { font-size:26px; color:#f5a623; letter-spacing:3px; }
+.avis-header p { font-size:15px; color:var(--grey); margin-top:8px; }
+.avis-track-wrap {
+  overflow: hidden;
+  margin-top: 40px;
+  padding-bottom: 16px;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+.avis-track {
+  display: flex;
+  gap: 22px;
+  width: max-content;
+  animation: scroll-avis 55s linear infinite;
+}
+@keyframes scroll-avis {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.avis-grid { display: contents; }
+.avis-item {
+  width: 320px;
+  flex-shrink: 0;
+  background: #fff;
+  border-radius: 20px;
+  padding: 26px 22px;
+  border: 1px solid rgba(213,122,136,0.12);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.avis-top { display:flex; align-items:center; gap:13px; }
+.avis-avatar {
+  width:44px; height:44px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:18px; font-weight:700; color:#fff; flex-shrink:0;
+}
+.avis-meta { flex:1; }
+.avis-name { font-weight:600; font-size:15px; color:var(--dark); line-height:1.3; }
+.avis-date { font-size:12px; color:var(--grey); margin-top:2px; }
+.avis-stars { color:#f5a623; font-size:15px; letter-spacing:2px; }
+.avis-text { font-size:13.5px; color:#555; line-height:1.75; flex:1; }
+.avis-source { display:flex; align-items:center; gap:6px; font-size:12px; color:var(--grey); }
+.avis-source svg { width:14px; height:14px; }
+.avis-cta { text-align:center; padding-bottom:64px; }
+.avis-cta a { font-size:14px; padding:12px 28px; }
+
+/* ═══════════════════════════════
+   SERVICES
+═══════════════════════════════ */
+.services {
+  background: var(--rose-l);
+  padding: 64px clamp(16px,5vw,60px);
+}
+.section-title {
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.section-sub {
+  text-align: center;
+  color: var(--grey);
+  font-size: 14px;
+  margin-bottom: 40px;
+  letter-spacing: 0.5px;
+}
+.services-grid {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+.service-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 18px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  transition: transform .2s, box-shadow .2s;
+  cursor: pointer;
+}
+.service-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(213,122,136,0.15); }
+.service-card__name { font-weight: 500; font-size: 15px; }
+.service-card__price { font-size: 13px; color: var(--rose); font-weight: 600; white-space: nowrap; margin-left: 12px; }
+.services-cta {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 36px;
+  flex-wrap: wrap;
+}
+
+/* ═══════════════════════════════
+   POURQUOI
+═══════════════════════════════ */
+.why { padding: 64px clamp(16px,5vw,60px); background: #fff; }
+.why-grid {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+.why-card {
+  background: var(--rose-l);
+  border-radius: 16px;
+  padding: 28px 24px;
+  text-align: center;
+  transition: transform .2s;
+}
+.why-card:hover { transform: translateY(-4px); }
+.why-icon { font-size: 32px; margin-bottom: 14px; }
+.why-name { font-weight: 600; font-size: 16px; margin-bottom: 8px; }
+.why-text { font-size: 14px; color: var(--grey); line-height: 1.6; }
+
+/* ═══════════════════════════════
+   INFO / CONTACT
+═══════════════════════════════ */
+.info { background: var(--rose-l); padding: 64px clamp(16px,5vw,60px); }
+.info-grid {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 32px;
+}
+.info-label {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--rose);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.info-value { font-size: 15px; line-height: 1.8; color: #444; }
+.info-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--rose);
+  text-decoration: underline;
+}
+.map-wrap {
+  margin-top: 16px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+}
+.btn-call {
+  display: inline-block;
+  margin-top: 14px;
+  background: var(--rose);
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background .2s;
+}
+.btn-call:hover { background: #c4697a; }
+
+
+/* ═══════════════════════════════
+   CTA FINAL
+═══════════════════════════════ */
+.cta-final {
+  background: url('/hala-style/wp-content/uploads/2026/02/caa5a71b-19b5-41c1-ae52-f18cdf863402.png') center center / cover no-repeat;
+  position: relative;
+  padding: 80px clamp(16px,5vw,80px);
+  text-align: center;
+}
+.cta-final::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(15,10,8,0.60);
+}
+.cta-final h2 {
+  position: relative; z-index: 1;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(30px,5vw,52px);
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+.cta-final h2 em {
+  font-family: 'Allura', cursive;
+  font-style: normal;
+  color: #fbd3dc;
+  font-size: 1.2em;
+  display: block;
+}
+.cta-final p {
+  position: relative; z-index: 1;
+  color: rgba(255,255,255,0.82);
+  font-size: clamp(14px,1.8vw,17px);
+  margin-bottom: 36px;
+}
+.cta-final-btns {
+  position: relative; z-index: 1;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.btn-outline-white {
+  background: transparent;
+  border: 2px solid rgba(255,255,255,0.7);
+  color: #fff;
+}
+.btn-outline-white:hover { background: rgba(255,255,255,0.15); }
+
+/* ═══════════════════════════════
+   PORTRAIT BANNER
+═══════════════════════════════ */
+.portrait-banner {
+  background: #fff;
+  padding: 64px clamp(16px, 5vw, 80px);
+}
+.portrait-banner__inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 56px;
+}
+.portrait-banner__img-wrap {
+  flex-shrink: 0;
+}
+.portrait-banner__img {
+  width: clamp(220px, 26vw, 320px);
+  height: clamp(270px, 32vw, 400px);
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 28px;
+  border: 8px solid #fbd3dc;
+  box-shadow: 0 20px 56px rgba(168,144,111,0.3);
+  display: block;
+}
+.portrait-banner__text {
+  flex: 1;
+}
+.portrait-banner__text h2 {
+  font-family: 'Allura', cursive;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  color: #2d2d2d;
+  line-height: 1.2;
+  margin-bottom: 18px;
+}
+.portrait-banner__text h2 span {
+  color: var(--rose);
+}
+.portrait-banner__text p {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.8;
+  max-width: 460px;
+  margin-bottom: 28px;
+}
+@media (max-width: 680px) {
+  .portrait-banner__inner { flex-direction: column; gap: 28px; text-align: center; }
+  .portrait-banner__img { width: 180px; height: 220px; }
+  .portrait-banner__text p { max-width: 100%; }
+}
+
+/* ═══════════════════════════════
+   HALA INFO
+═══════════════════════════════ */
+.hala-info {
+  background: var(--rose-l);
+  padding: 64px clamp(16px, 5vw, 60px);
+}
+.hala-info__wrap {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.hala-info__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 32px;
+}
+.hala-info__item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.hala-info__label {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--rose);
+  font-weight: 700;
+}
+.hala-info__value {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #444;
+}
+.hala-info__link {
+  display: inline-block;
+  font-size: 13px;
+  color: var(--rose);
+  text-decoration: underline;
+  margin-top: 4px;
+}
+.hala-info__link:hover { color: #c4697a; }
+.hala-call {
+  display: inline-block;
+  margin-top: 6px;
+  background: var(--rose);
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background .2s;
+  width: fit-content;
+}
+.hala-call:hover { background: #c4697a; color: #fff; }
+
+/* ═══════════════════════════════
+   FOOTER
+═══════════════════════════════ */
+.footer {
+  background: linear-gradient(135deg, rgb(249,246,242) 0%, rgb(168,144,111) 10%, rgb(255,244,233) 38%, rgb(255,244,233) 51%, rgb(168,144,111) 90%, rgb(249,246,242) 100%);
+  padding: 36px clamp(16px,5vw,60px) 24px;
+}
+.footer-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  margin-bottom: 16px;
+}
+.footer-col-title { font-size: 13px; font-weight: 700; color: #3d3d3d; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links a { font-size: 14px; color: #555; transition: color .2s; }
+.footer-links a:hover { color: var(--rose); }
+.footer-social { display: flex; gap: 14px; margin-top: 2px; }
+.footer-social a { color: #555; transition: color .2s; }
+.footer-social a:hover { color: var(--rose); }
+.footer-social svg { width: 20px; height: 20px; fill: currentColor; display: block; }
+.footer-copy { text-align: center; font-size: 12px; color: #888; max-width: var(--max); margin: 0 auto; }
+
+
+/* ═══════════════════════════════
+   MOBILE
+═══════════════════════════════ */
+@media (max-width: 768px) {
+  .header-nav, .header-social, .header-phone { display: none; }
+  .burger { display: flex; z-index: 10; position: relative; }
+  .burger span { background: #3d3d3d; }
+  .header-inner { min-height: 70px; }
+  .header-logo img { width: 150px; }
+  .hero { min-height: unset; }
+  .services-cta { flex-direction: column; align-items: stretch; }
+  .services-cta .btn { text-align: center; }
+  .why-grid, .info-grid, .footer-inner { grid-template-columns: 1fr; }
+}
+</style>
 </head>
 <body>
-  <iframe src="./hala-style-site/" title="Hala Style"></iframe>
+
+<!-- ═══ HEADER ═══ -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/hala-style/" class="header-logo">
+      <img src="/hala-style/wp-content/uploads/2025/07/image-11-edited.png" alt="Hala Style Coiffure">
+    </a>
+    <nav class="header-nav">
+      <a href="/hala-style/">Accueil</a>
+      <a href="/hala-style/services/">Services</a>
+      <a href="/hala-style/booking/">Réservation</a>
+    </nav>
+    <div class="header-social">
+      <a href="https://www.instagram.com/coiffure_hala_style_/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12,4.622c2.403,0,2.688,0.009,3.637,0.052c0.877,0.04,1.354,0.187,1.671,0.31c0.42,0.163,0.72,0.358,1.035,0.673c0.315,0.315,0.51,0.615,0.673,1.035c0.123,0.317,0.27,0.794,0.31,1.671c0.043,0.949,0.052,1.234,0.052,3.637s-0.009,2.688-0.052,3.637c-0.04,0.877-0.187,1.354-0.31,1.671c-0.163,0.42-0.358,0.72-0.673,1.035c-0.315,0.315-0.615,0.51-1.035,0.673c-0.317,0.123-0.794,0.27-1.671,0.31c-0.949,0.043-1.233,0.052-3.637,0.052s-2.688-0.009-3.637-0.052c-0.877-0.04-1.354-0.187-1.671-0.31c-0.42-0.163-0.72-0.358-1.035-0.673c-0.315-0.315-0.51-0.615-0.673-1.035c-0.123-0.317-0.27-0.794-0.31-1.671C4.631,14.688,4.622,14.403,4.622,12s0.009-2.688,0.052-3.637c0.04-0.877,0.187-1.354,0.31-1.671c0.163-0.42,0.358-0.72,0.673-1.035c0.315-0.315,0.615-0.51,1.035-0.673c0.317-0.123,0.794-0.27,1.671-0.31C9.312,4.631,9.597,4.622,12,4.622 M12,3C9.556,3,9.249,3.01,8.289,3.054C7.331,3.098,6.677,3.25,6.105,3.472C5.513,3.702,5.011,4.01,4.511,4.511c-0.5,0.5-0.808,1.002-1.038,1.594C3.25,6.677,3.098,7.331,3.054,8.289C3.01,9.249,3,9.556,3,12c0,2.444,0.01,2.751,0.054,3.711c0.044,0.958,0.196,1.612,0.418,2.185c0.23,0.592,0.538,1.094,1.038,1.594c0.5,0.5,1.002,0.808,1.594,1.038c0.572,0.222,1.227,0.375,2.185,0.418C9.249,20.99,9.556,21,12,21s2.751-0.01,3.711-0.054c0.958-0.044,1.612-0.196,2.185-0.418c0.592-0.23,1.094-0.538,1.594-1.038c0.5-0.5,0.808-1.002,1.038-1.594c0.222-0.572,0.375-1.227,0.418-2.185C20.99,14.751,21,14.444,21,12s-0.01-2.751-0.054-3.711c-0.044-0.958-0.196-1.612-0.418-2.185c-0.23-0.592-0.538-1.094-1.038-1.594c-0.5-0.5-1.002-0.808-1.594-1.038c-0.572-0.222-1.227-0.375-2.185-0.418C14.751,3.01,14.444,3,12,3L12,3z M12,7.378c-2.552,0-4.622,2.069-4.622,4.622S9.448,16.622,12,16.622s4.622-2.069,4.622-4.622S14.552,7.378,12,7.378z M12,15c-1.657,0-3-1.343-3-3s1.343-3,3-3s3,1.343,3,3S13.657,15,12,15z M16.804,6.116c-0.596,0-1.08,0.484-1.08,1.08s0.484,1.08,1.08,1.08c0.596,0,1.08-0.484,1.08-1.08S17.401,6.116,16.804,6.116z"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@halamoustapha1" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 32 32"><path d="M16.708 0.027c1.745-0.027 3.48-0.011 5.213-0.027 0.105 2.041 0.839 4.12 2.333 5.563 1.491 1.479 3.6 2.156 5.652 2.385v5.369c-1.923-0.063-3.855-0.463-5.6-1.291-0.76-0.344-1.468-0.787-2.161-1.24-0.009 3.896 0.016 7.787-0.025 11.667-0.104 1.864-0.719 3.719-1.803 5.255-1.744 2.557-4.771 4.224-7.88 4.276-1.907 0.109-3.812-0.411-5.437-1.369-2.693-1.588-4.588-4.495-4.864-7.615-0.032-0.667-0.043-1.333-0.016-1.984 0.24-2.537 1.495-4.964 3.443-6.615 2.208-1.923 5.301-2.839 8.197-2.297 0.027 1.975-0.052 3.948-0.052 5.923-1.323-0.428-2.869-0.308-4.025 0.495-0.844 0.547-1.485 1.385-1.819 2.333-0.276 0.676-0.197 1.427-0.181 2.145 0.317 2.188 2.421 4.027 4.667 3.828 1.489-0.016 2.916-0.88 3.692-2.145 0.251-0.443 0.532-0.896 0.547-1.417 0.131-2.385 0.079-4.76 0.095-7.145 0.011-5.375-0.016-10.735 0.025-16.093z"/></svg>
+      </a>
+      <a href="https://web.facebook.com/chezhalastylecoiffure/" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12c0 5 3.7 9.1 8.4 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7C18.3 21.1 22 17 22 12c0-5.5-4.5-10-10-10z"/></svg>
+      </a>
+    </div>
+    <a href="tel:+15142788555" class="header-phone">
+      <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+      (514) 278-8555
+    </a>
+    <div class="burger" onclick="this.closest('header').querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+  <nav class="mobile-menu">
+    <span class="mobile-menu-close" onclick="this.closest('.mobile-menu').classList.remove('open')">&times;</span>
+    <a href="/hala-style/">Accueil</a>
+    <a href="/hala-style/services/">Services</a>
+    <a href="/hala-style/booking/">Réservation</a>
+  </nav>
+  <img src="/hala-style/wp-content/uploads/2026/04/5120729919380983028.jpg" class="header-photo" alt="">
+</header>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+<h1>Soin capillaire<em>d'exception</em></h1>
+      <p>Découvrez une expérience capillaire luxueuse, conçue pour sublimer votre style avec raffinement et passion.</p>
+      <a href="/hala-style/booking/" class="btn">Prendre rendez-vous</a>
+    </div>
+    <div class="hero-portrait">
+      <img src="/hala-style/wp-content/uploads/2025/07/5152546126572924745_cleanup.png" alt="Hala Style Coiffure">
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ AVIS ═══ -->
+<section class="avis-band">
+  <div style="background-color: #fff9fa; padding: 32px 24px; text-align: center; border-radius: 24px; max-width: 800px; margin: 0 auto 40px; box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);">
+    <h2 style="color: #d57a88; font-size: 28px; font-weight: 600; margin-bottom: 12px; font-family: 'Playfair Display', serif;">
+      💬 Ce que disent nos clientes ✨
+    </h2>
+    <p style="color: #3a3a3a; font-size: 18px; line-height: 1.6; font-family: 'Poppins', sans-serif; max-width: 700px; margin: 0 auto;">
+      Chez <strong style="color: #e8aeb7;">Hala Style</strong>, chaque coiffure est une transformation.<br />
+      Explorez nos avis authentiques et découvrez pourquoi tant de femmes à Montréal nous font confiance.
+    </p>
+  </div>
+
+  <div class="avis-track-wrap">
+    <div class="avis-track">
+
+      <!-- ── SET 1 ── -->
+      <div class="avis-item">
+        <div class="avis-top">
+          <div class="avis-avatar" style="background:#d57a88;">W</div>
+          <div class="avis-meta">
+            <div class="avis-name">Wissal Affasse</div>
+            <div class="avis-date">il y a un an</div>
+          </div>
+        </div>
+        <div class="avis-stars">★★★★★</div>
+        <p class="avis-text">J'ai passé un moment formidable dans ce salon ! L'endroit est vraiment charmant et chaleureux. La coiffeuse était incroyablement gentille et accueillante. J'ai adoré le résultat ! Mes cheveux sont magnifiques et je suis repartie ravie. Merci Hala, tu es la meilleure ❤️ — Je reviendrai sans hésiter !</p>
+        <div class="avis-source"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg> Google</div>
+      </div>
+
+      <div class="avis-item">
+        <div class="avis-top">
+          <div class="avis-avatar" style="background:#5b8db8;">S</div>
+          <div class="avis-meta">
+            <div class="avis-name">Sidney go</div>
+            <div class="avis-date">il y a 6 mois</div>
+          </div>
+        </div>
+        <div class="avis-stars">★★★★★</div>
+        <p class="avis-text">Hala est très gentille, patiente et son travail est exceptionnel. J'ai eu une expérience formidable et je reviendrai sans hésiter :) Elle a réalisé ma coupe exactement comme je la souhaitais, et celle de ma fille aussi. Ravie de te rencontrer, Hala !</p>
+        <div class="avis-source"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg> Google</div>
+      </div>
+
+      <div class="avis-item">
+        <div class="avis-top">
+          <div class="avis-avatar" style="background:#a8906f;">F</div>
+          <div class="avis-meta">
+            <div class="avis-name">Farah Sobh</div>
+            <div class="avis-date">il y a 3 mois</div>
+          </div>
+        </div>
+        <div class="avis-stars">★★★★★</div>
+        <p class="avis-text">Hala est extrêmement talentueuse dans son travail et très sympathique. Le salon est très agréable et propre, et l'ambiance y est excellente. Je recommande vivement !</p>
+        <div class="avis-source"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg> Google</div>
+      </div>
+
+      <div class="avis-item">
+        <div class="avis-top">
+          <div class="avis-avatar" style="background:#7b68b5;">E</div>
+          <div class="avis-meta">
+            <div class="avis-name">Evelyne J</div>
+            <div class="avis-date">il y a 3 mois</div>
+          </div>
+        </div>
+        <div class="avis-stars">★★★★★</div>
+        <p class="avis-text">Super service ! Très satisfaite de mon passage, tout était parfait. Je reviendrai avec plaisir. Je mets 5 étoiles sans hésiter. Service impeccable et personnel très pro.</p>
+        <div class="avis-source"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg> Google</div>
+      </div>
+
+      <div class="avis-item">
+        <div class="avis-top">
+          <div class="avis-avatar" style="background:#b57abf;">N</div>
+          <div class="avis-meta">
+            <div class="avis-name">Nadia</div>
+            <div class="avis-date">il y a 7 mois</div>
+          </div>
+        </div>
+        <div class="avis-stars">★★★★★</div>
+        <p class="avis-text">Excellent service et très beau résultat 🤩 Hala est une femme au grand cœur, passionnée et très perfectionniste. Son salon est très propre et accueillant. Elle vous mettra à l'aise rapidement et donnera de très bons conseils ! Je la recommande sincèrement. P.s : salon "voilées friendly" 💜</p>
+        <div class="avis-source"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg> Google</div>
+      </div>
+
+      <!-- ── SET 2 (copie pour boucle seamless) ── -->
+      <div class="avis-item">
+        <div class="avis-top">
+          <div class="avis-avatar" style="background:#d57a88;">W</div>
+          <div class="avis-meta">
+            <div class="avis-name">Wissal Affasse</div>
+            <div class="avis-date">il y a un an</div>
+          </div>
+        </div>
+        <div class="avis-stars">★★★★★</div>
+        <p class="avis-text">J'ai passé un moment formidable dans ce salon ! L'endroit est vraiment charmant et chaleureux. La coiffeuse était incroyablement gentille et accueillante. J'ai adoré le résultat ! Mes cheveux sont magnifiques et je suis repartie ravie. Merci Hala, tu es la meilleure ❤️ — Je reviendrai sans hésiter !</p>
+        <div class="avis-source"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg> Google</div>
+      </div>
+
+      <div class="avis-item">
+        <div class="avis-top">
+          <div class="avis-avatar" style="background:#5b8db8;">S</div>
+          <div class="avis-meta">
+            <div class="avis-name">Sidney go</div>
+            <div class="avis-date">il y a 6 mois</div>
+          </div>
+        </div>
+        <div class="avis-stars">★★★★★</div>
+        <p class="avis-text">Hala est très gentille, patiente et son travail est exceptionnel. J'ai eu une expérience formidable et je reviendrai sans hésiter :) Elle a réalisé ma coupe exactement comme je la souhaitais, et celle de ma fille aussi. Ravie de te rencontrer, Hala !</p>
+        <div class="avis-source"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg> Google</div>
+      </div>
+
+      <div class="avis-item">
+        <div class="avis-top">
+          <div class="avis-avatar" style="background:#a8906f;">F</div>
+          <div class="avis-meta">
+            <div class="avis-name">Farah Sobh</div>
+            <div class="avis-date">il y a 3 mois</div>
+          </div>
+        </div>
+        <div class="avis-stars">★★★★★</div>
+        <p class="avis-text">Hala est extrêmement talentueuse dans son travail et très sympathique. Le salon est très agréable et propre, et l'ambiance y est excellente. Je recommande vivement !</p>
+        <div class="avis-source"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg> Google</div>
+      </div>
+
+      <div class="avis-item">
+        <div class="avis-top">
+          <div class="avis-avatar" style="background:#7b68b5;">E</div>
+          <div class="avis-meta">
+            <div class="avis-name">Evelyne J</div>
+            <div class="avis-date">il y a 3 mois</div>
+          </div>
+        </div>
+        <div class="avis-stars">★★★★★</div>
+        <p class="avis-text">Super service ! Très satisfaite de mon passage, tout était parfait. Je reviendrai avec plaisir. Je mets 5 étoiles sans hésiter. Service impeccable et personnel très pro.</p>
+        <div class="avis-source"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg> Google</div>
+      </div>
+
+      <div class="avis-item">
+        <div class="avis-top">
+          <div class="avis-avatar" style="background:#b57abf;">N</div>
+          <div class="avis-meta">
+            <div class="avis-name">Nadia</div>
+            <div class="avis-date">il y a 7 mois</div>
+          </div>
+        </div>
+        <div class="avis-stars">★★★★★</div>
+        <p class="avis-text">Excellent service et très beau résultat 🤩 Hala est une femme au grand cœur, passionnée et très perfectionniste. Son salon est très propre et accueillant. Elle vous mettra à l'aise rapidement et donnera de très bons conseils ! Je la recommande sincèrement. P.s : salon "voilées friendly" 💜</p>
+        <div class="avis-source"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg> Google</div>
+      </div>
+
+    </div><!-- /avis-track -->
+  </div><!-- /avis-track-wrap -->
+
+  <div class="avis-cta">
+    <a href="https://g.page/r/hala-style-coiffure/review" target="_blank" class="btn">Laisser un avis Google</a>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ═══ -->
+<section class="services">
+  <h2 class="section-title">Nos services</h2>
+  <p class="section-sub">Des prix clairs. Des résultats propres.</p>
+  <div class="services-grid">
+    <a class="service-card" href="/hala-style/services/"><span class="service-card__name">Coupe de cheveux</span><span class="service-card__price">À partir de 35$</span></a>
+    <a class="service-card" href="/hala-style/services/"><span class="service-card__name">Mise en plis</span><span class="service-card__price">À partir de 35$</span></a>
+    <a class="service-card" href="/hala-style/services/"><span class="service-card__name">Coupe + mise en plis</span><span class="service-card__price">À partir de 70$</span></a>
+    <a class="service-card" href="/hala-style/services/"><span class="service-card__name">Toner</span><span class="service-card__price">À partir de 45$</span></a>
+    <a class="service-card" href="/hala-style/services/"><span class="service-card__name">Traitement kératine</span><span class="service-card__price">À partir de 250$</span></a>
+    <a class="service-card" href="/hala-style/services/"><span class="service-card__name">Botox capillaire</span><span class="service-card__price">À partir de 160$</span></a>
+  </div>
+  <div class="services-cta">
+    <a href="/hala-style/services/" class="btn">Voir tous les prix</a>
+    <a href="/hala-style/booking/" class="btn btn-outline">Prendre rendez-vous</a>
+  </div>
+</section>
+
+<!-- ═══ POURQUOI ═══ -->
+<section class="why">
+  <h2 class="section-title">Pourquoi Hala Style</h2>
+  <p class="section-sub">Un service simple. Un résultat propre.</p>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-name">Spécialiste cheveux femmes</div>
+      <div class="why-text">Conseil, coupe et finition selon ton style.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-name">Produits professionnels</div>
+      <div class="why-text">Soins et colorations de qualité salon.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-name">Résultats naturels</div>
+      <div class="why-text">Un rendu net, durable, sans surprise.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BLOC SALON ═══ -->
+<div id="bloc-salon-hs">
+  <style>
+    #bloc-salon-hs .image-section {
+      background-color: transparent;
+      padding: 20px 30px;
+      border-radius: 0;
+      max-width: 900px;
+      margin: 0 auto;
+      box-shadow: none;
+      text-align: center;
+    }
+    #bloc-salon-hs .image-section:hover {
+      transform: none;
+      box-shadow: none;
+    }
+    #bloc-salon-hs .image-section .section-title {
+      font-family: 'Playfair Display', serif;
+      color: #D57A88;
+      font-size: 38px;
+      margin-bottom: 30px;
+      font-weight: 600;
+      position: relative;
+      display: inline-block;
+      text-align: center;
+    }
+    #bloc-salon-hs .image-section .section-title::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -12px;
+      width: 70px;
+      height: 3px;
+      background-color: #E8AEB7;
+      border-radius: 2px;
+    }
+    #bloc-salon-hs .image-section img {
+      display: block;
+      margin: 0 auto 30px;
+      border-radius: 21px;
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      aspect-ratio: 1;
+      object-fit: cover;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+      transition: transform 0.3s ease;
+    }
+    #bloc-salon-hs .image-section img:hover {
+      transform: scale(1.03);
+    }
+    #bloc-salon-hs .alt-book-button {
+      background-color: #D57A88;
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 30px;
+      display: inline-block;
+      font-family: 'Poppins', sans-serif;
+      transition: background-color 0.3s ease;
+    }
+    #bloc-salon-hs .alt-book-button:hover {
+      background-color: #C96178;
+    }
+  </style>
+
+  <div class="image-section">
+    <div class="section-title">Our Salon</div>
+    <img src="/hala-style/wp-content/uploads/2025/07/salon-hala.png" alt="Salon HalaStyle">
+    <a href="/hala-style/booking/" class="alt-book-button">✨ Réserver ma séance</a>
+  </div>
+</div>
+
+<!-- ═══ PORTRAIT BANNER ═══ -->
+<section class="portrait-banner">
+  <div class="portrait-banner__inner">
+    <div class="portrait-banner__img-wrap">
+      <img class="portrait-banner__img"
+           src="/hala-style/wp-content/uploads/2026/04/portrait-accueil.jpg"
+           alt="Hala Style Coiffure">
+    </div>
+    <div class="portrait-banner__text">
+      <h2>Votre beauté,<br><span>notre passion</span></h2>
+      <p>Chez Hala Style, chaque détail compte. Nous prenons soin de vous avec expertise, chaleur et raffinement — pour que vous repartiez sublimée, à chaque visite.</p>
+      <a href="/hala-style/booking/" class="btn">Prendre rendez-vous</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HALA INFO ═══ -->
+<section class="hala-info">
+  <div class="hala-info__wrap">
+    <div class="hala-info__grid">
+
+      <div class="hala-info__item">
+        <div class="hala-info__label">Adresse</div>
+        <div class="hala-info__value">
+          3361 Rue Monselet<br>
+          Montréal-Nord, QC
+        </div>
+        <a class="hala-info__link"
+           href="https://www.google.com/maps/place/Hala+Style+Coiffure/@45.584916,-73.647036,16z/data=!4m6!3m5!1s0x4cc91f4270aef92d:0x984d121dc0f7a516!8m2!3d45.5849157!4d-73.6470365!16s%2Fg%2F11c1_vs_c9?hl=en&entry=ttu&g_ep=EgoyMDI2MDIxOC4wIKXMDSoASAFQAw%3D%3D"
+           target="_blank"
+           rel="noopener">
+           Ouvrir dans Google Maps
+        </a>
+      </div>
+
+      <div class="hala-info__item">
+        <div class="hala-info__label">Horaires</div>
+        <div class="hala-info__value">
+          Samedi&nbsp;&nbsp;10h00–18h00<br>
+          Dimanche&nbsp;10h00–16h00 <em style="font-size:12px;color:var(--rose);">(sur rendez-vous)</em><br>
+          Lundi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fermé<br>
+          Mardi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10h00–19h00<br>
+          Mercredi&nbsp;10h00–19h00<br>
+          Jeudi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10h00–21h00<br>
+          Vendredi&nbsp;10h00–21h00
+        </div>
+      </div>
+
+      <div class="hala-info__item">
+        <div class="hala-info__label">Téléphone</div>
+        <div class="hala-info__value">+1 514-278-8555</div>
+        <a class="hala-call" href="tel:+15142788555">
+          Appeler maintenant
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-col-title">Navigation</div>
+      <div class="footer-links">
+        <a href="/hala-style/">Accueil</a>
+        <a href="/hala-style/services/">Services</a>
+        <a href="/hala-style/booking/">Réservation</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Nous suivre</div>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/coiffure_hala_style_/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12,4.622c2.403,0,2.688,0.009,3.637,0.052c0.877,0.04,1.354,0.187,1.671,0.31c0.42,0.163,0.72,0.358,1.035,0.673c0.315,0.315,0.51,0.615,0.673,1.035c0.123,0.317,0.27,0.794,0.31,1.671c0.043,0.949,0.052,1.234,0.052,3.637s-0.009,2.688-0.052,3.637c-0.04,0.877-0.187,1.354-0.31,1.671c-0.163,0.42-0.358,0.72-0.673,1.035c-0.315,0.315-0.615,0.51-1.035,0.673c-0.317,0.123-0.794,0.27-1.671,0.31c-0.949,0.043-1.233,0.052-3.637,0.052s-2.688-0.009-3.637-0.052c-0.877-0.04-1.354-0.187-1.671-0.31c-0.42-0.163-0.72-0.358-1.035-0.673c-0.315-0.315-0.51-0.615-0.673-1.035c-0.123-0.317-0.27-0.794-0.31-1.671C4.631,14.688,4.622,14.403,4.622,12s0.009-2.688,0.052-3.637c0.04-0.877,0.187-1.354,0.31-1.671c0.163-0.42,0.358-0.72,0.673-1.035c0.315-0.315,0.615-0.51,1.035-0.673c0.317-0.123,0.794-0.27,1.671-0.31C9.312,4.631,9.597,4.622,12,4.622 M12,3C9.556,3,9.249,3.01,8.289,3.054C7.331,3.098,6.677,3.25,6.105,3.472C5.513,3.702,5.011,4.01,4.511,4.511c-0.5,0.5-0.808,1.002-1.038,1.594C3.25,6.677,3.098,7.331,3.054,8.289C3.01,9.249,3,9.556,3,12c0,2.444,0.01,2.751,0.054,3.711c0.044,0.958,0.196,1.612,0.418,2.185c0.23,0.592,0.538,1.094,1.038,1.594c0.5,0.5,1.002,0.808,1.594,1.038c0.572,0.222,1.227,0.375,2.185,0.418C9.249,20.99,9.556,21,12,21s2.751-0.01,3.711-0.054c0.958-0.044,1.612-0.196,2.185-0.418c0.592-0.23,1.094-0.538,1.594-1.038c0.5-0.5,0.808-1.002,1.038-1.594c0.222-0.572,0.375-1.227,0.418-2.185C20.99,14.751,21,14.444,21,12s-0.01-2.751-0.054-3.711c-0.044-0.958-0.196-1.612-0.418-2.185c-0.23-0.592-0.538-1.094-1.038-1.594c-0.5-0.5-1.002-0.808-1.594-1.038c-0.572-0.222-1.227-0.375-2.185-0.418C14.751,3.01,14.444,3,12,3L12,3z M12,7.378c-2.552,0-4.622,2.069-4.622,4.622S9.448,16.622,12,16.622s4.622-2.069,4.622-4.622S14.552,7.378,12,7.378z M12,15c-1.657,0-3-1.343-3-3s1.343-3,3-3s3,1.343,3,3S13.657,15,12,15z M16.804,6.116c-0.596,0-1.08,0.484-1.08,1.08s0.484,1.08,1.08,1.08c0.596,0,1.08-0.484,1.08-1.08S17.401,6.116,16.804,6.116z"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@halamoustapha1" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg viewBox="0 0 32 32"><path d="M16.708 0.027c1.745-0.027 3.48-0.011 5.213-0.027 0.105 2.041 0.839 4.12 2.333 5.563 1.491 1.479 3.6 2.156 5.652 2.385v5.369c-1.923-0.063-3.855-0.463-5.6-1.291-0.76-0.344-1.468-0.787-2.161-1.24-0.009 3.896 0.016 7.787-0.025 11.667-0.104 1.864-0.719 3.719-1.803 5.255-1.744 2.557-4.771 4.224-7.88 4.276-1.907 0.109-3.812-0.411-5.437-1.369-2.693-1.588-4.588-4.495-4.864-7.615-0.032-0.667-0.043-1.333-0.016-1.984 0.24-2.537 1.495-4.964 3.443-6.615 2.208-1.923 5.301-2.839 8.197-2.297 0.027 1.975-0.052 3.948-0.052 5.923-1.323-0.428-2.869-0.308-4.025 0.495-0.844 0.547-1.485 1.385-1.819 2.333-0.276 0.676-0.197 1.427-0.181 2.145 0.317 2.188 2.421 4.027 4.667 3.828 1.489-0.016 2.916-0.88 3.692-2.145 0.251-0.443 0.532-0.896 0.547-1.417 0.131-2.385 0.079-4.76 0.095-7.145 0.011-5.375-0.016-10.735 0.025-16.093z"/></svg>
+        </a>
+        <a href="https://web.facebook.com/chezhalastylecoiffure/" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12c0 5 3.7 9.1 8.4 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7C18.3 21.1 22 17 22 12c0-5.5-4.5-10-10-10z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <div style="font-size:14px;color:#555;line-height:1.9;">
+        3361 Rue Monselet<br>Montréal-Nord, QC<br>
+        <a href="tel:+15142788555" style="color:#3d3d3d; font-weight:700; font-size:15px;">📞 +1 514-278-8555</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copy">© 2026 Hala Style Coiffure — Tous droits réservés</div>
+</footer>
+
+
 </body>
 </html>
